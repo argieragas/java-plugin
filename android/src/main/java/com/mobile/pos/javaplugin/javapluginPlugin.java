@@ -120,30 +120,34 @@ public class javapluginPlugin extends Plugin {
             String combinations = call.getString("combinations");
             int max = call.getInt("maxSize");
             total = total.replace(".00", "");
-            Bitmap logo = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.antiguas);
-            logo = Bitmap.createScaledBitmap(logo, 384, 130, true);
+            Bitmap logo = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.northman_logo);
+            logo = Bitmap.createScaledBitmap(logo, 384, 110, true);
+            String combi = "";
+            if(combinations.length() != 0) {
+                combi = "[L]     "+combinations+"\n";
+            }
 
             printer.printFormattedText("[C]<img>"+ PrinterTextParserImg.bitmapToHexadecimalString(printer, logo)+"</img>\n\n"+
-                    "[C]Small Town Lottery - ADN\n"+
+                    "[C]Small Town Lottery - DDN\n"+
                     "[L]BET DATE   : "+betDate+"\n"+
                     "[L]BET TIME   : "+betTime+"\n"+
                     "[L]DRAW DATE  : "+drawDate+"\n"+
                     "[L]TX CODE    : "+qrcode+"\n"+
                     "[L]AREA       : "+area+"\n"+
-                    "[L]ADN-170"+" ".repeat(25-referenceNumber.length())+""+referenceNumber+"\n"+
+                    "[L]"+agentCode+"      "+referenceNumber+"\n"+
                     "[L]--------------------------------\n"+
                     "[L]Bet   Draw       Amt         Win\n"+
                     "[L]--------------------------------\n"+
                     "[L]GAME: "+gameType+"\n"+
                     "[L]"+games+"\n"+
-                    "[L]     "+combinations+"\n"+
+                    combi+
                     "[L]--------------------------------\n"+
-                    "[L]TOTAL: "+" ".repeat(25-total.length())+""+total+"\n"+
+                    "[L]TOTAL: "+" ".repeat(25-total.length())+""+total+"\n\n"+
                     "[C]Winning tickets should be\n" +
                     "[C]claimed within 1 year after\n" +
                     "[C]bet date, otherwise winning\n" +
                     "[C]prize shall be forfeited.\n"+
-                    "[C]NO TICKET, NO PAYOUT.\n"+
+                    "[C]NO TICKET, NO PAYOUT.\n\n"+
                     "[C]<img>"+ PrinterTextParserImg.bitmapToHexadecimalString(
                     printer,
                     generateQrCodeWithLogo(
@@ -151,7 +155,7 @@ public class javapluginPlugin extends Plugin {
                             Bitmap.createScaledBitmap(
                                     BitmapFactory.decodeResource(
                                             getContext().getResources(),
-                                            R.drawable.antiguas_logo
+                                            R.drawable.northman_logo_icon
                                     ),
                                     300,
                                     300,
@@ -159,8 +163,8 @@ public class javapluginPlugin extends Plugin {
                             )
                     )
             ) +"</img>\n" +
-                    "[C]Thank you and Play Again!\n"+
-                    "[C]<img>"+PrinterTextParserImg.bitmapToHexadecimalString(printer, Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getContext().getResources(), R.drawable.adnad), 400, 80, true))+"</img>",0);
+                    "[C]Thank you and Play Again!\n\n"+
+                    "[L]<img>"+PrinterTextParserImg.bitmapToHexadecimalString(printer, Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getContext().getResources(), R.drawable.footer), 370, 41, true))+"</img>",80);
 
             ret.put("success","");
         } catch (Exception e) {
@@ -206,34 +210,8 @@ public class javapluginPlugin extends Plugin {
                     )
             ) +"</img>\n" +
                     "[C]Thank you and Play Again!\n"+
-                    "[C]<img>"+PrinterTextParserImg.bitmapToHexadecimalString(printer, Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getContext().getResources(), R.drawable.adnad), 400, 80, true))+"</img>");
+                    "[C]<img>"+PrinterTextParserImg.bitmapToHexadecimalString(printer, Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getContext().getResources(), R.drawable.footer), 400, 80, true))+"</img>");
 
-            /*printer.printFormattedText(
-                    "[C]<img>" + PrinterTextParserImg.bitmapToHexadecimalString(printer, Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getContext().getResources(), R.drawable.header), 384, 176, true))+"</img>\n" +
-                            "[L]\n" +
-                            "[C]<u><font size='big'>ORDER N°045</font></u>\n" +
-                            "[L]\n" +
-                            "[C]================================\n" +
-                            "[L]\n" +
-                            "[L]<b>BEAUTIFUL SHIRT</b>[R]9.99e\n" +
-                            "[L]<font size='small'></font>\n"+
-                            "[L]  + Size : S\n" +
-                            "[L]\n" +
-                            "[L]\n" +
-                            "[C]--------------------------------\n" +
-                            "[R]TOTAL PRICE :[R]34.98e\n" +
-                            "[R]TAX :[R]4.23e\n" +
-                            "[L]\n" +
-                            "[C]================================\n" +
-                            "[L]\n" +
-                            "[L]<font size='tall'>Customer :</font>\n" +
-                            "[L]Raymond DUPONT\n" +
-                            "[L]5 rue des girafes\n" +
-                            "[L]31547 PERPETES\n" +
-                            "[L]Tel : +33801201456\n" +
-                            "[L]\n" +
-                            "[C]<barcode type='ean13' height='10'>831254784551</barcode>\n" +
-                            "[C]<qrcode size='20'>https://dantsu.com/</qrcode>", 40);*/
         } catch (Exception e) {
             ret.put("value", e.getMessage());
         }

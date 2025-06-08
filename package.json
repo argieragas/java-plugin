@@ -1,6 +1,6 @@
 {
   "name": "java-plugin",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "description": "bluetooth connection and can print using bluetooth",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
